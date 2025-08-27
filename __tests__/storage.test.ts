@@ -1,4 +1,4 @@
-import { saveToHistory, loadHistory } from '../lib/storage';
+import { saveToHistory, loadHistory } from '@/lib/storage';
 
 const KEY = 'ai_history';
 
