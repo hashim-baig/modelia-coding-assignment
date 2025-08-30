@@ -15,19 +15,17 @@ const styles = ['Editorial', 'Streetwear', 'Vintage', 'Minimalist'];
 
 export default function StyleSelector({ style, setStyle }: Props) {
     return (
-        <div>
-            <PromptInputModelSelect onValueChange={setStyle} value={style}>
-                <PromptInputModelSelectTrigger>
-                    <PromptInputModelSelectValue />
-                </PromptInputModelSelectTrigger>
-                <PromptInputModelSelectContent>
-                    {styles.map((style) => (
-                        <PromptInputModelSelectItem key={style} value={style}>
-                            {style}
-                        </PromptInputModelSelectItem>
-                    ))}
-                </PromptInputModelSelectContent>
-            </PromptInputModelSelect>
-        </div>
+        <PromptInputModelSelect onValueChange={setStyle} value={style}>
+            <PromptInputModelSelectTrigger>
+                <PromptInputModelSelectValue />
+            </PromptInputModelSelectTrigger>
+            <PromptInputModelSelectContent>
+                {styles.map((style) => (
+                    <PromptInputModelSelectItem key={style} value={style}>
+                        {style}
+                    </PromptInputModelSelectItem>
+                ))}
+            </PromptInputModelSelectContent>
+        </PromptInputModelSelect>
     );
 }

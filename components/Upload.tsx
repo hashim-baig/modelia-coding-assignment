@@ -28,7 +28,7 @@ export default function Upload({ onImageSelect }: Props) {
     };
 
     return (
-        <div>
+        <>
             <PromptInputButton onClick={handleClick}>
                 <PaperclipIcon size={16} />
             </PromptInputButton>
@@ -41,6 +41,6 @@ export default function Upload({ onImageSelect }: Props) {
                 onChange={handleFile}
                 className="hidden"
             />
-        </div>
+        </>
     );
 }
