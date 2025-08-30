@@ -14,9 +14,11 @@ interface Props {
     onImageSelect: (dataUrl: string | null) => void;
     style: string;
     setStyle: (v: string) => void;
+    prompt: string;
+    setPrompt: (v: string) => void;
 }
 
-const PromptInputV2 = ({ onImageSelect, style, setStyle }: Props) => {
+const PromptInputV2 = ({ onImageSelect, style, setStyle, prompt, setPrompt }: Props) => {
     const [text, setText] = useState<string>('');
     const [status, setStatus] = useState<'submitted' | 'streaming' | 'ready' | 'error'>('ready');
     const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
@@ -38,10 +40,11 @@ const PromptInputV2 = ({ onImageSelect, style, setStyle }: Props) => {
         <div className="p-8 w-full">
             <PromptInput onSubmit={handleSubmit}>
                 <PromptInputTextarea
-                    onChange={(e) => setText(e.target.value)}
-                    value={text}
-                    placeholder="Type your message..."
+                    onChange={(e) => setPrompt(e.target.value)}
+                    value={prompt}
+                    placeholder="Describe your idea..."
                 />
+
                 <PromptInputToolbar>
                     <PromptInputTools>
                         <Upload onImageSelect={onImageSelect} />

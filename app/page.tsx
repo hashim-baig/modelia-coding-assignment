@@ -19,8 +19,6 @@ export default function Home() {
                 <HeroSection />
                 <div className="container mx-auto px-4 py-12">
                     <div className="flex flex-col gap-8">
-                        <PromptInput prompt={prompt} setPrompt={setPrompt} />
-
                         <Preview image={image} prompt={prompt} style={style} />
 
                         <GenerateButton image={image} prompt={prompt} style={style} />
@@ -33,7 +31,13 @@ export default function Home() {
                             }}
                         />
 
-                        <PromptInputV2 onImageSelect={setImage} style={style} setStyle={setStyle} />
+                        <PromptInputV2
+                            onImageSelect={setImage}
+                            style={style}
+                            setStyle={setStyle}
+                            prompt={prompt}
+                            setPrompt={setPrompt}
+                        />
                     </div>
                 </div>
             </main>
