@@ -1,8 +1,6 @@
 'use client';
 import { useState } from 'react';
-import Upload from '@/components/Upload';
 import PromptInput from '@/components/PromptInput';
-import StyleSelector from '@/components/StyleSelector';
 import Preview from '@/components/Preview';
 import GenerateButton from '@/components/GenerateButton';
 import History from '@/components/History';
