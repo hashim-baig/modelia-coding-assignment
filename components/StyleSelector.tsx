@@ -1,4 +1,10 @@
-import { ChangeEvent } from 'react';
+import {
+    PromptInputModelSelect,
+    PromptInputModelSelectContent,
+    PromptInputModelSelectItem,
+    PromptInputModelSelectTrigger,
+    PromptInputModelSelectValue,
+} from '@/components/ui/shadcn-io/ai/prompt-input';
 
 interface Props {
     style: string;
@@ -8,27 +14,20 @@ interface Props {
 const styles = ['Editorial', 'Streetwear', 'Vintage', 'Minimalist'];
 
 export default function StyleSelector({ style, setStyle }: Props) {
-    function handleChange(e: ChangeEvent<HTMLSelectElement>) {
-        setStyle(e.target.value);
-    }
-
     return (
         <div>
-            <label htmlFor="styleSelect" className="block font-medium mb-1">
-                Style
-            </label>
-            <select
-                id="styleSelect"
-                value={style}
-                onChange={handleChange}
-                className="w-full border rounded px-3 py-2 focus:outline focus:ring-2"
-            >
-                {styles.map((s) => (
-                    <option key={s} value={s}>
-                        {s}
-                    </option>
-                ))}
-            </select>
+            <PromptInputModelSelect onValueChange={setStyle} value={style}>
+                <PromptInputModelSelectTrigger>
+                    <PromptInputModelSelectValue />
+                </PromptInputModelSelectTrigger>
+                <PromptInputModelSelectContent>
+                    {styles.map((style) => (
+                        <PromptInputModelSelectItem key={style} value={style}>
+                            {style}
+                        </PromptInputModelSelectItem>
+                    ))}
+                </PromptInputModelSelectContent>
+            </PromptInputModelSelect>
         </div>
     );
 }

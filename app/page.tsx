@@ -22,11 +22,11 @@ export default function Home() {
                 <div className="container mx-auto px-4 py-12">
                     <div className="flex flex-col gap-8">
                         <PromptInput prompt={prompt} setPrompt={setPrompt} />
-                        <StyleSelector style={style} setStyle={setStyle} />
 
                         <Preview image={image} prompt={prompt} style={style} />
 
                         <GenerateButton image={image} prompt={prompt} style={style} />
+
                         <History
                             onSelect={(item) => {
                                 setImage(item.imageUrl);
@@ -34,7 +34,8 @@ export default function Home() {
                                 setStyle(item.style);
                             }}
                         />
-                        <PromptInputV2 onImageSelect={setImage} />
+
+                        <PromptInputV2 onImageSelect={setImage} style={style} setStyle={setStyle} />
                     </div>
                 </div>
             </main>
