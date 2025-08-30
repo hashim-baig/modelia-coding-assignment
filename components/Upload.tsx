@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { downscaleImage } from '@/lib/image';
+import { PromptInputButton } from '@/components/ui/shadcn-io/ai/prompt-input';
+import { PaperclipIcon } from 'lucide-react';
 
 interface Props {
     onImageSelect: (dataUrl: string | null) => void;
@@ -21,18 +23,23 @@ export default function Upload({ onImageSelect }: Props) {
         onImageSelect(dataUrl);
     }
 
+    const handleClick = () => {
+        fileRef.current?.click();
+    };
+
     return (
         <div>
-            <label htmlFor="fileUpload" className="block font-medium mb-1">
-                Upload Image
-            </label>
+            <PromptInputButton onClick={handleClick}>
+                <PaperclipIcon size={16} />
+            </PromptInputButton>
+
             <input
                 type="file"
                 id="fileUpload"
                 ref={fileRef}
                 accept="image/png,image/jpeg"
                 onChange={handleFile}
-                className="border p-2 rounded focus:outline focus:ring-2"
+                className="hidden"
             />
         </div>
     );

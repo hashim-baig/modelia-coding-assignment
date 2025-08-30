@@ -8,6 +8,7 @@ import GenerateButton from '@/components/GenerateButton';
 import History from '@/components/History';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import HeroSection from '@/components/HeroSection';
+import PromptInputV2 from '@/components/PromptInputV2';
 
 export default function Home() {
     const [image, setImage] = useState<string | null>(null);
@@ -20,7 +21,6 @@ export default function Home() {
                 <HeroSection />
                 <div className="container mx-auto px-4 py-12">
                     <div className="flex flex-col gap-8">
-                        <Upload onImageSelect={setImage} />
                         <PromptInput prompt={prompt} setPrompt={setPrompt} />
                         <StyleSelector style={style} setStyle={setStyle} />
 
@@ -34,6 +34,7 @@ export default function Home() {
                                 setStyle(item.style);
                             }}
                         />
+                        <PromptInputV2 onImageSelect={setImage} />
                     </div>
                 </div>
             </main>
