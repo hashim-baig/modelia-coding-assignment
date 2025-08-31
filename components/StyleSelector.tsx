@@ -16,12 +16,16 @@ const styles = ['Editorial', 'Streetwear', 'Vintage', 'Minimalist'];
 export default function StyleSelector({ style, setStyle }: Props) {
     return (
         <PromptInputModelSelect onValueChange={setStyle} value={style}>
-            <PromptInputModelSelectTrigger>
+            <PromptInputModelSelectTrigger className="cursor-pointer">
                 <PromptInputModelSelectValue />
             </PromptInputModelSelectTrigger>
             <PromptInputModelSelectContent>
                 {styles.map((style) => (
-                    <PromptInputModelSelectItem key={style} value={style}>
+                    <PromptInputModelSelectItem
+                        key={style}
+                        value={style}
+                        className="cursor-pointer"
+                    >
                         {style}
                     </PromptInputModelSelectItem>
                 ))}

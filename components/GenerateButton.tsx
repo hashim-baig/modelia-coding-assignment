@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { mockGenerate } from '@/lib/api';
 import { saveToHistory } from '@/lib/storage';
 import { PromptInputSubmit } from '@/components/ui/shadcn-io/ai/prompt-input';
+import { toast } from 'sonner';
 
 type ChatStatus = 'submitted' | 'streaming' | 'ready' | 'error';
 
@@ -22,23 +23,26 @@ export default function GenerateButton({
     status,
     setStatus,
 }: Props) {
-    const [err, setErr] = useState<string | null>(null);
     const [controller, setController] = useState<AbortController | null>(null);
 
     const handleSubmit = async () => {
-        if (!image || !prompt) {
-            alert('Must upload an image and provide a prompt.');
+        if (!image) {
+            toast.error('Must upload an image.');
             return;
         }
 
-        setErr(null);
+        if (!prompt) {
+            toast.error('Must provide a prompt.');
+            return;
+        }
+
         setStatus('submitted');
 
         const ctrl = new AbortController();
         setController(ctrl);
 
         try {
-            setStatus('streaming'); // once request starts
+            setStatus('streaming');
 
             const result = await mockGenerate({ imageDataUrl: image, prompt, style }, ctrl.signal);
 
@@ -48,14 +52,15 @@ export default function GenerateButton({
             setPrompt('');
         } catch (e: any) {
             if (e.name === 'AbortError') {
-                setErr('Request aborted.');
-                setStatus('ready'); // ✅ go back to ready instead of error
+                toast.error('Request aborted.');
+                setStatus('ready');
             } else {
-                setErr(e.message || 'Error generating');
-                setStatus('error'); // real error
+                toast.error(e.message || 'Error generating');
+                setStatus('error');
             }
         } finally {
             setController(null);
+            setStatus('ready');
         }
     };
 
@@ -75,9 +80,8 @@ export default function GenerateButton({
                           ? handleAbort
                           : undefined
                 }
+                className="cursor-pointer"
             />
-
-            {err && <p className="text-red-600 text-sm">{err}</p>}
         </div>
     );
 }

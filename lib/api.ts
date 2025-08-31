@@ -1,3 +1,5 @@
+import { toast } from 'sonner';
+
 export async function mockGenerate(
     body: { imageDataUrl: string | null; prompt: string; style: string },
     signal?: AbortSignal,
@@ -12,8 +14,12 @@ export async function mockGenerate(
 
                 // 20% chance of error
                 if (Math.random() < 0.2) {
+                    if (attempt > 1) {
+                        toast.warning('Model overloaded');
+                        toast.info('Retrying...');
+                    }
                     if (attempt >= 3) {
-                        return reject({ message: 'Model overloaded' });
+                        return reject({ message: 'Max retry attempt exhausted. Request Aborted.' });
                     }
                     // Retry with exponential backoff
                     const delay = Math.pow(2, attempt) * 500;

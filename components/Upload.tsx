@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { downscaleImage } from '@/lib/image';
 import { PromptInputButton } from '@/components/ui/shadcn-io/ai/prompt-input';
 import { PaperclipIcon } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface Props {
     onImageSelect: (dataUrl: string | null) => void;
@@ -15,7 +16,7 @@ export default function Upload({ onImageSelect }: Props) {
         if (!file) return;
 
         if (file.size > 10_000_000) {
-            alert('File too large (max 10MB)');
+            toast.error('File too large (max 10MB)');
             return;
         }
 
@@ -29,7 +30,7 @@ export default function Upload({ onImageSelect }: Props) {
 
     return (
         <>
-            <PromptInputButton onClick={handleClick}>
+            <PromptInputButton onClick={handleClick} className="cursor-pointer">
                 <PaperclipIcon size={16} />
             </PromptInputButton>
 

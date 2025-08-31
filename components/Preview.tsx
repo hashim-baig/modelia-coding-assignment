@@ -1,3 +1,6 @@
+import { Card } from '@/components/ui/card';
+import { Activity, Clock } from 'lucide-react';
+
 interface Props {
     image: string | null;
     prompt: string;
@@ -7,8 +10,11 @@ interface Props {
 export default function Preview({ image, prompt, style }: Props) {
     return (
         <section aria-label="Preview" className="px-8 py-4 w-full">
-            <div className="border rounded p-4 space-y-3">
-                <h2 className="font-semibold">Live Summary</h2>
+            <Card className="p-4">
+                <div className="flex items-center gap-2 font-semibold">
+                    <Activity className="h-5 w-5 text-accent" />
+                    <h2>Live Summary</h2>
+                </div>
                 {image ? (
                     <img
                         src={image}
@@ -26,7 +32,7 @@ export default function Preview({ image, prompt, style }: Props) {
                         <span className="font-medium">Style:</span> {style}
                     </p>
                 </div>
-            </div>
+            </Card>
         </section>
     );
 }

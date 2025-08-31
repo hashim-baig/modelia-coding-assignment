@@ -5,10 +5,11 @@ import {
     PromptInputToolbar,
     PromptInputTools,
 } from '@/components/ui/shadcn-io/ai/prompt-input';
-import { type FormEventHandler, useState } from 'react';
+import { useRef, useEffect, type FormEventHandler, useState } from 'react';
 import Upload from '@/components/Upload';
 import StyleSelector from '@/components/StyleSelector';
 import GenerateButton from '@/components/GenerateButton';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface Props {
     onImageSelect: (dataUrl: string | null) => void;
@@ -22,6 +23,12 @@ interface Props {
 const PromptInputV2 = ({ onImageSelect, style, setStyle, prompt, setPrompt, image }: Props) => {
     const [status, setStatus] = useState<'submitted' | 'streaming' | 'ready' | 'error'>('ready');
 
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+    useEffect(() => {
+        textareaRef.current?.focus();
+    }, []);
+
     const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
     };
@@ -30,16 +37,35 @@ const PromptInputV2 = ({ onImageSelect, style, setStyle, prompt, setPrompt, imag
         <section aria-label="Chat Input" className="px-8 py-4 w-full">
             <PromptInput onSubmit={handleSubmit}>
                 <PromptInputTextarea
+                    ref={textareaRef}
                     onChange={(e) => setPrompt(e.target.value)}
                     value={prompt}
-                    placeholder="Describe your idea..."
+                    placeholder="Describe the style, setting, and mood you want for your fashion visual. Be specific about lighting, background, and aesthetic..."
                 />
 
                 <PromptInputToolbar>
                     <PromptInputTools>
-                        <Upload onImageSelect={onImageSelect} />
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <div>
+                                    <Upload onImageSelect={onImageSelect} />
+                                </div>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Upload Image</p>
+                            </TooltipContent>
+                        </Tooltip>
 
-                        <StyleSelector style={style} setStyle={setStyle} />
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <div>
+                                    <StyleSelector style={style} setStyle={setStyle} />
+                                </div>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Select a Style</p>
+                            </TooltipContent>
+                        </Tooltip>
                     </PromptInputTools>
 
                     <GenerateButton
@@ -55,4 +81,6 @@ const PromptInputV2 = ({ onImageSelect, style, setStyle, prompt, setPrompt, imag
         </section>
     );
 };
+
+//@ts-ignore
 export default PromptInputV2;

@@ -10,6 +10,9 @@ import { Message, MessageAvatar, MessageContent } from '@/components/ui/shadcn-i
 import { loadHistory } from '@/lib/storage';
 import { nanoid } from 'nanoid';
 import { TimeAgo } from '@/components/TimeAgo';
+import { Lightbulb } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import HeroSection from '@/components/HeroSection';
 
 interface HistoryItem {
     id: string;
@@ -51,6 +54,7 @@ export default function HistoryConversation() {
                     avatar: 'https://github.com/dovazencot.png',
                     value: (
                         <div className="flex flex-col gap-2">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={item.imageUrl}
                                 alt="Uploaded"
@@ -84,7 +88,35 @@ export default function HistoryConversation() {
         setMessages(formatted);
     }, [items]);
 
-    if (messages.length === 0) return null;
+    if (messages.length === 0)
+        return (
+            <section aria-label="Prompt Tips" className="relative size-full px-8 py-4 ">
+                <HeroSection />
+                <Card className="p-4 mt-4 bg-muted/30">
+                    <div className="flex items-start gap-3">
+                        <Lightbulb className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <div>
+                            <h4 className="font-medium text-sm mb-1">Pro Tips</h4>
+                            <ul className="text-xs text-muted-foreground space-y-1">
+                                <li>
+                                    • Include specific lighting (golden hour, studio lighting,
+                                    natural light)
+                                </li>
+                                <li>
+                                    • Mention the setting or background (urban, studio, outdoor,
+                                    interior)
+                                </li>
+                                <li>
+                                    • Describe the mood or aesthetic (dramatic, casual, elegant,
+                                    edgy)
+                                </li>
+                                <li>• Add details about styling or pose preferences</li>
+                            </ul>
+                        </div>
+                    </div>
+                </Card>
+            </section>
+        );
 
     return (
         <Conversation className="relative size-full px-8 py-4 " style={{ height: '498px' }}>
