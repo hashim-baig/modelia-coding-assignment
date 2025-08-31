@@ -16,9 +16,7 @@ export default function Home() {
             <main className="min-h-screen bg-gradient-subtle">
                 <HeroSection />
                 <div className="container mx-auto px-4 py-12">
-                    <div className="flex flex-col gap-8">
-                        <Preview image={image} prompt={prompt} style={style} />
-
+                    <div className="flex flex-col">
                         <History
                             onSelect={(item) => {
                                 setImage(item.imageUrl);
@@ -26,6 +24,8 @@ export default function Home() {
                                 setStyle(item.style);
                             }}
                         />
+
+                        <Preview image={image} prompt={prompt} style={style} />
 
                         <PromptInputV2
                             onImageSelect={setImage}

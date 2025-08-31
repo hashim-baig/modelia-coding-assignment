@@ -27,7 +27,7 @@ const PromptInputV2 = ({ onImageSelect, style, setStyle, prompt, setPrompt, imag
     };
 
     return (
-        <div className="p-8 w-full">
+        <section aria-label="Chat Input" className="px-8 py-4 w-full">
             <PromptInput onSubmit={handleSubmit}>
                 <PromptInputTextarea
                     onChange={(e) => setPrompt(e.target.value)}
@@ -52,7 +52,7 @@ const PromptInputV2 = ({ onImageSelect, style, setStyle, prompt, setPrompt, imag
                     />
                 </PromptInputToolbar>
             </PromptInput>
-        </div>
+        </section>
     );
 };
 export default PromptInputV2;
