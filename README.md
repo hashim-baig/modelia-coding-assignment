@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
+# README.md
+
+# Mini AI Studio
+
+A modern, accessible web app that simulates an AI-powered studio for creative image generation, featuring file upload, prompt and style selection, history, and live UI preview.
+---
+
+## Features
+
+- **Image Upload & Preview:** Upload PNG/JPG up to 10MB, with client-side downscaling for oversized images.
+- **Prompt & Style Input:** Input creative prompts and pick from multiple style options (e.g., Editorial, Streetwear, Vintage).
+- **Live Summary:** See a real-time preview of your uploaded image, selected style, and prompt.
+- **AI Generation Simulation:** Trigger a mock "Generate" process, with simulated processing time, error state (20% fail and retries with exponential backoff), abort, and UX feedback.
+- **History:** Last 5 generations are saved in localStorage; click to restore any as a new preview.
+- **Accessible Layout:** All controls are keyboard accessible with visible focus indicators, aria support, and robust error boundaries.
+- **Responsive Sidebar:** Modern sidebar layout for navigation/history.
+- **Toast Feedback:** Visual success/error notifications for user actions.
+- **Performance:** Optimized, client-side downscaling, and memoized UI components.
+
+---
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) (TypeScript, strict mode)
+- [React](https://react.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Jest](https://jestjs.io/)
+- [Cypress](https://www.cypress.io/) (E2E testing)
+- ESLint + Prettier
+
+---
 
 ## Getting Started
 
-First, run the development server:
+```bash
+git clone https://github.com/hashim-baig/medolia-coding-assignment.git
+cd medolia-coding-assignment
+npm install
+```
+
+**Run Development Server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Production Build**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Testing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Unit Tests**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm test
+```
 
-## Deploy on Vercel
+- **E2E (Cypress)**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run e2e
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📂 Project Structure
+
+```
+components/
+  Upload.tsx
+  PromptInput.tsx
+  StyleSelector.tsx
+  Preview.tsx
+  Spinner.tsx
+  ErrorBoundary.tsx
+  GenerateButton.tsx
+  History.tsx
+lib/
+  api.ts        // Mock AI API
+  image.ts      // Downscale helper
+  storage.ts    // History/localStorage helpers
+pages/
+  index.tsx     // App entry
+public/
+  ...           // Static assets, icons
+```
+
+---
+
+## Notable Commits
+
+- **Upload with preview**: [b17452d](https://github.com/hashim-baig/medolia-coding-assignment/commit/b17452d526413c899d84c8121b434751ab02cc1c)
+- **Prompt/Style UI**: [4f4d055](https://github.com/hashim-baig/medolia-coding-assignment/commit/4f4d05549993d659cb9559821598eb894334bfb2)
+- **Live Summary**: [54e47de](https://github.com/hashim-baig/medolia-coding-assignment/commit/54e47de888ac11db2cd44234ba851782500d8134)
+- **Spinner/ErrorBoundary**: [b8b8bd3](https://github.com/hashim-baig/medolia-coding-assignment/commit/b8b8bd34aed3200ac8672a1ebd6ef13de2f1e409)
+- **Generation Logic**: [4a7e404](https://github.com/hashim-baig/medolia-coding-assignment/commit/4a7e404e2e91663d952cbedaa2e8a149a3a491e7)
+- **History feature**: [37ad284](https://github.com/hashim-baig/medolia-coding-assignment/commit/37ad28468fa0a9b24c6d695e46a36f207ff763b4)
+- **Sidebar/Layout improvements**: [ee04a7f](https://github.com/hashim-baig/medolia-coding-assignment/commit/ee04a7fcc9838d3d020e0538c3ed8fb48c4c36ca)
+- **Toaster feedback**: [e5267ed](https://github.com/hashim-baig/medolia-coding-assignment/commit/e5267ed87b3444f9ecb3801163d0d542f34f4273)
+
+---
+
+## Credits
+
+Developer: [@hashim-baig](https://github.com/hashim-baig)
+
+---
