@@ -1,8 +1,6 @@
 'use client';
 import { useState } from 'react';
-import PromptInput from '@/components/PromptInput';
 import Preview from '@/components/Preview';
-import GenerateButton from '@/components/GenerateButton';
 import History from '@/components/History';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import HeroSection from '@/components/HeroSection';
@@ -21,8 +19,6 @@ export default function Home() {
                     <div className="flex flex-col gap-8">
                         <Preview image={image} prompt={prompt} style={style} />
 
-                        <GenerateButton image={image} prompt={prompt} style={style} />
-
                         <History
                             onSelect={(item) => {
                                 setImage(item.imageUrl);
@@ -37,6 +33,7 @@ export default function Home() {
                             setStyle={setStyle}
                             prompt={prompt}
                             setPrompt={setPrompt}
+                            image={image}
                         />
                     </div>
                 </div>
