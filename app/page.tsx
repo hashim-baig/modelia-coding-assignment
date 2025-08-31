@@ -5,6 +5,7 @@ import History from '@/components/History';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import HeroSection from '@/components/HeroSection';
 import PromptInputV2 from '@/components/PromptInputV2';
+import HistoryConversation from '@/components/HistoryConversation';
 
 export default function Home() {
     const [image, setImage] = useState<string | null>(null);
@@ -26,6 +27,8 @@ export default function Home() {
                         />
 
                         <Preview image={image} prompt={prompt} style={style} />
+
+                        <HistoryConversation />
 
                         <PromptInputV2
                             onImageSelect={setImage}

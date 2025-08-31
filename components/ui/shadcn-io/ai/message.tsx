@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/shadcn-ui/components/ui/avatar';
-import { cn } from '@repo/shadcn-ui/lib/utils';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { cn } from '@/lib/utils';
 import type { UIMessage } from 'ai';
 import type { ComponentProps, HTMLAttributes } from 'react';
 

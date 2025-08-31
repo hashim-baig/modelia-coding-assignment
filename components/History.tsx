@@ -43,9 +43,7 @@ export default function History({ onSelect }: Props) {
                                 <div>
                                     <p className="font-medium">{item.prompt}</p>
                                     <p className="text-sm text-gray-500">{item.style}</p>
-                                    <p className="text-xs text-gray-400">
-                                        {new Date(item.createdAt).toLocaleString()}
-                                    </p>
+                                    <p className="text-xs text-gray-400">{item.createdAt}</p>
                                 </div>
                             </button>
                         </li>
