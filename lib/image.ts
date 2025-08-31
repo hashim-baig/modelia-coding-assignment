@@ -1,3 +1,5 @@
+import { toast } from 'sonner';
+
 export async function downscaleImage(file: File, maxSize: number): Promise<string> {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -28,5 +30,6 @@ export async function downscaleImage(file: File, maxSize: number): Promise<strin
         };
         reader.onerror = reject;
         reader.readAsDataURL(file);
+        toast.success(`Image has been uploaded and optimized successfully!.`);
     });
 }
