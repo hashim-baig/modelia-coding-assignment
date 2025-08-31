@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card';
-import { Activity, Clock } from 'lucide-react';
+import { Activity } from 'lucide-react';
 
 interface Props {
     image: string | null;
